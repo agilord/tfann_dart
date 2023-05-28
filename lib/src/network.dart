@@ -1,15 +1,10 @@
-import 'dart:collection';
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:tfann/tfann.dart';
-import 'package:tfann/src/train_set.dart';
 
-import 'activation_function.dart';
 import 'dart:math';
 import 'dart:io';
 
-import 'linalg.dart';
 
 class RandomSupply {
   static final Random rng = Random();
@@ -160,7 +155,10 @@ class TfannNetwork {
       double norm = normalizedErrors.abs().largestElement();
       if (norm < skipIfErrBelow) {
         return TrainArtifacts(
-            netErrors, FVector.zero(layers.first.inputLength),prevTrainArtifacts?.biasDeltas ?? [], prevTrainArtifacts?.weightDeltas ?? []);
+            netErrors,
+            FVector.zero(layers.first.inputLength),
+            prevTrainArtifacts?.biasDeltas ?? [],
+            prevTrainArtifacts?.weightDeltas ?? []);
       }
       //double norm = normalizedErrors.squared().sumElements();
       if (norm > maxErrClipAbove) {
@@ -181,10 +179,11 @@ class TfannNetwork {
     }
     List<FVector> biasDeltas = [];
     List<FLeftMatrix> weightDeltas = [];
-    bool useMomentum =
-        momentum > 0.0 && momentum < 1.0 && prevTrainArtifacts !=null &&
-         (prevTrainArtifacts.biasDeltas.isNotEmpty) && 
-         (prevTrainArtifacts.weightDeltas.isNotEmpty);
+    bool useMomentum = momentum > 0.0 &&
+        momentum < 1.0 &&
+        prevTrainArtifacts != null &&
+        (prevTrainArtifacts.biasDeltas.isNotEmpty) &&
+        (prevTrainArtifacts.weightDeltas.isNotEmpty);
 
     if (learningRate != 0) {
       var arti = artifacts.iterator;

@@ -1,16 +1,13 @@
 import 'dart:convert';
 import 'dart:isolate';
-import 'dart:math';
 
 import 'package:test/test.dart';
 import 'package:tfann/tfann.dart';
-import 'package:tfann/src/activation_function.dart';
 
 import 'dart:typed_data';
 
 void main() {
   group('TfannNetwork', () {
-    final Random r = Random();
     final bitwiseNN = TfannNetwork.full([
       3,
       3,
@@ -181,8 +178,7 @@ void main(_, SendPort port) {
       expect(j.interleavedSplit(2)[0][0] == -3, isTrue);
       expect(j.interleavedSplit(2)[0][1] == -1, isTrue);
       expect(j.interleavedSplit(2)[0][2] == 2, isTrue);
-      expect(j.cherryPick([0, 2, 3, 4])[3]==2, isTrue);
-      
+      expect(j.cherryPick([0, 2, 3, 4])[3] == 2, isTrue);
     });
     test('test matrix', () async {
       final FLeftMatrix leftMatrix = FLeftMatrix.fromList([

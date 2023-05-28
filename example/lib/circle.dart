@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:math';
 
 import 'package:tfann/tfann.dart';
@@ -55,8 +54,11 @@ void main() {
       }
       //print("$x $y $netResult");
     }
-    print("Test ground truth: Positive: ${positive_truth * 100 / testLength}%    Negative: ${100 - positive_truth * 100 / testLength}%");
-    print("Result: Positive: ${positive * 100 / testLength}%  Negative: ${negative * 100 / testLength}%");
-    print("False Positive: ${false_positive * 100 / testLength}%   False Negative: ${false_negative * 100 / testLength}%");
+    print(
+        "Test ground truth: Positive: ${positive_truth * 100 / testLength}%    Negative: ${100 - positive_truth * 100 / testLength}%");
+    print(
+        "Result: Positive: ${positive * 100 / testLength}%  Negative: ${negative * 100 / testLength}%");
+    print(
+        "False Positive: ${false_positive * 100 / testLength}%   False Negative: ${false_negative * 100 / testLength}%");
   }
 }

@@ -1,8 +1,6 @@
-import 'dart:convert';
 import 'dart:typed_data';
 import 'dart:math' as math;
 
-import 'package:tfann/tfann.dart';
 
 /// Simd based column vector type.
 class FVector {
